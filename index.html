@@ -6,6 +6,8 @@
     <title>Trivia</title>
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   </head>
   <body>
     <div id="container">
@@ -112,19 +114,21 @@
         </form>
     </div>  
     <!-- buttons section -->
-    <div class="w3-section w3-blue w3-center w3-round w3-margin" id="submit" style="display: none">
-      <h2>Submit</h2>
-    </div>
- 
-    <div class="w3-section w3-blue w3-center w3-round w3-margin" id="next" style="display: none">
-      <h2>Next</h2>
+    <div>
+      <div class="w3-section w3-blue w3-center w3-round w3-margin" id="submit" style="display: none">
+        <h2>Submit</h2>
+      </div>
+      
+      <div class="w3-section w3-blue w3-center w3-round w3-margin" id="next" style="display: none">
+        <h2>Next</h2>
+      </div>
     </div>
     <!-- count section -->
     <div class="w3-row-padding w3-margin-top" id="countsection" style="display: none">
       <div class="w3-half">
         <div class="w3-card-4 w3-light-grey w3-round">
           <div class="w3-container w3-center">
-            <h4>Count</h4>
+            <h4>Recent Score</h4>
           </div>
           <p class="w3-jumbo w3-center" id="count">0</p>
         </div>

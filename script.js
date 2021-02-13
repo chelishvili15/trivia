@@ -1,4 +1,4 @@
-var start = document.getElementById('start'),
+let start = document.getElementById('start'),
     main = document.getElementById('main'), 
     main2 = document.getElementById('questdiv'),
     quest = document.getElementById('question'),
@@ -17,7 +17,7 @@ var start = document.getElementById('start'),
     bestScore = document.getElementById('bestscore'),
     countSection = document.getElementById('countsection'),
     resetButton = document.getElementById('reset'),
-    count = 0, ansArr = [], i=0 
+    count = 0, ansArr = [], i=0, time = 1000;
     ;
 
 function shuffleArray(array) {
@@ -33,21 +33,25 @@ function colorReset(){
   for (let j=0; j<arr1.length; j++){
     arr1[j].style.backgroundColor = '#D1EDF2';
     arr1[j].style.color = 'black';
+    
   }
   var arr2 = document.getElementsByClassName('ans2div');
   for (let j=0; j<arr2.length; j++){
     arr2[j].style.backgroundColor = '#D1EDF2';
     arr2[j].style.color = 'black';
   }
+   
 }
 
 function unhideTrivia(){
-  main.style.display = 'none';
-  main2.style.display = 'block';
-  next.style.display = 'none';
-  submit.style.display = 'block';
-  countSection.style.display = 'block';
-  resetButton.style.display = 'block';
+  $(document).ready(function(){
+    $(main).hide(time);
+    $(main2).show(time);
+    $(submit).show(time);
+    $(next).hide(time);
+    $(countSection).show(time);
+    $(resetButton).show(time);
+  })
 }
 
 function makeAnswersBoolean(ansArr){
@@ -60,15 +64,19 @@ function makeAnswersMultiple(ansArr){
   ans1.innerHTML = ansArr[0];
   ans2.innerHTML = ansArr[1];
   ans3.innerHTML = ansArr[2];
-  ans4.innerHTML = ansArr[3];      
+  ans4.innerHTML = ansArr[3];    
 }
 
 function makeColors(inputar,labelar,correct_answer, n){
    for (let j=0; j<n; j++){
           if (inputar[j].checked == true ){
             if(labelar[j].textContent != correct_answer){
-              inputar[j].parentElement.style.backgroundColor = 'red';
-              inputar[j].parentElement.style.color = 'white';
+              $(document).ready(function(){
+                $(inputar[j]).parent().animate({
+                  backgroundColor: 'red',
+                  color: 'white'
+                  }, 'slow');
+              });
             } else { 
                 count++;
                 countDiv.innerHTML = count;
@@ -78,41 +86,44 @@ function makeColors(inputar,labelar,correct_answer, n){
               }
           }
           if(labelar[j].textContent == correct_answer){
-              labelar[j].parentElement.style.backgroundColor = 'green';
-              labelar[j].parentElement.style.color = 'white';
+              $(document).ready(function(){
+                $(labelar[j]).parent().animate({
+                  backgroundColor: 'green',
+                  color: 'white'
+                  }, 'slow');
+              });
           }
     }     
 }
 
 function end(){
-  submit.style.display = 'none';
-  next.style.display = 'none';
-  ansform1.style.display = 'none';
-  ansform2.style.display = 'none';
   quest.innerHTML = 'End of Trivia, please click Reset button for new game'; 
+  $(document).ready(function(){
+    $(submit).hide(time);
+    $(next).hide(time);
+    $(ansform1).hide(time*6);
+    $(ansform2).hide(time*6);
+  })
 }
 
 function reset(){
   count = 0; 
   colorReset();
-  main.style.display = 'block';
-  main2.style.display = 'none';
-  // next.style.display = 'none';
-  submit.style.display = 'none';
-  start.style.display = 'block';
   countDiv.innerHTML = '0';
-  ansform1.style.display = 'none';
-  ansform2.style.display = 'none';
-  countSection.style.display = 'none'
-  resetButton.style.display = 'none';
   start.children[0].innerHTML = 'START';
-
+  $(document).ready(function(){
+    $(main).show(time);
+    $(main2).hide(time);
+    $(submit).hide(time);
+    $(start).show(time);
+    $(ansform1).hide(time);
+    $(ansform2).hide(time);
+    $(countSection).hide(time);
+    $(resetButton).hide(time);
+  })
 }
 
-
 start.addEventListener('click', mainfunction);
-    
-
 
 function mainfunction(){ 
   //linkis damushaveba
@@ -156,17 +167,14 @@ function mainfunction(){
         }
         
         //next buttonze dachera da gadasvla shemdeg kitxvaze
-        //vaketebt igives rac start buttonze i gaizrdeba
+        //i gaizrdeba
         next.addEventListener('click', nextfunction)
           function nextfunction(){
-            next.style.display = 'none'; //next buttonis damalva
-            submit.style.display = 'block'; //submit buttonis gamochena
-            colorReset(); ansArr = [];
-            
-            i++;
-            if (i == parseInt(str1)){   
-              end();
-            } 
+            $(document).ready(function(){
+              $(next).hide(0);
+              $(submit).show(0);
+            });
+            colorReset(); ansArr = []; i++;
             
             ansArr.push(dat.results[i].correct_answer);
             for (let j in dat.results[i].incorrect_answers){
@@ -187,8 +195,10 @@ function mainfunction(){
       //axla vaketebt submit clicks
       submit.addEventListener('click', submitfunction) 
       function submitfunction(){
-        next.style.display = 'block'; //next buttonis gamochena
-        submit.style.display = 'none'; //submit buttonis damalva 
+        $(document).ready(function(){
+            $(submit).hide(0);
+            $(next).show(0);
+        }); 
         if (dat.results[i].type == 'boolean'){
           var inputar1 = document.getElementsByName('truefalse');
           var labelar1 = document.getElementsByClassName('truefalse'); 
@@ -198,6 +208,9 @@ function mainfunction(){
           var inputar2 = document.getElementsByName('multi');
           makeColors(inputar2, labelar2, dat.results[i].correct_answer, 4);
         }
+        if (i+1 == parseInt(str1)){   
+              end();
+            } 
       }
       //reseti cda 15764
       document.getElementById('reset').addEventListener("click", ()=>{
