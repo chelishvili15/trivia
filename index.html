@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Trivia</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div id="container">
+    <div class="w3-container w3-light-grey" id="main">
+      <form action="" class="w3-form">
+
+        <div class="w3-section w3-row">
+          <label for="" class="w3-label">Numbers Of Questions:</label>
+          <input type="number" min="1" value="10" class="w3-input">
+        </div>
+
+        <div class="w3-section w3-row">
+          <label for="" class="w3-label">Select Category:</label>
+          <select name="Category" class="w3-select" id="category">
+            <option class="w3-option" value="">Any Category</option>
+            <option class="w3-option" value="9">General Knowledge</option>
+            <option class="w3-option" value="10">Entertainment: Books</option>
+            <option class="w3-option" value="11">Entertainment: Film</option>
+            <option class="w3-option" value="12">Entertainment: Music</option>
+            <option class="w3-option" value="13">Entertainment: Musicals & Theatres</option>
+            <option class="w3-option" value="14">Entertainment: Television</option>
+            <option class="w3-option" value="15">Entertainment: Video Games</option>
+            <option class="w3-option" value="16">Entertainment: Board Games</option>
+            <option class="w3-option" value="17">Science & Nature</option>
+            <option class="w3-option" value="18">Scince: Computer</option>
+            <option class="w3-option" value="19">Scince: Mathematics</option>
+            <option class="w3-option" value="20">Mythilogy</option>
+            <option class="w3-option" value="21">Sports</option>
+            <option class="w3-option" value="22">Geography</option>
+            <option class="w3-option" value="23">History</option>
+            <option class="w3-option" value="24">Politics</option>
+            <option class="w3-option" value="25">Art</option>
+            <option class="w3-option" value="26">Celebrities</option>
+            <option class="w3-option" value="27">Animals</option>
+            <option class="w3-option" value="28">Vehicles</option>
+            <option class="w3-option" value="29">Entertainment: Comics</option>
+            <option class="w3-option" value="30">Science: Gadgets</option>
+            <option class="w3-option" value="31">Entertainment: Japanese Anime & Manga</option>
+            <option class="w3-option" value="32">Entertainment: Cartoon & Animations</option>
+          </select>
+        </div>
+
+        <div class="w3-section w3-row">
+          <label for="" class="w3-label">Select Difficulty:</label>
+          <select name="Difficulty" class="w3-select" id="difficulty">
+            <option class="w3-option" value="">Any Difficulty</option>
+            <option class="w3-option" value="easy">Easy</option>
+            <option class="w3-option" value="medium">Medium</option>
+            <option class="w3-option" value="hard">Hard</option>
+          </select>
+        </div>
+
+        <div class="w3-section w3-row">
+          <label for="" class="w3-label">Select Type:</label>
+          <select name="Type" class="w3-select" id="type">
+            <option class="w3-option" value="">Any Type</option>
+            <option class="w3-option" value="multiple">Multiple Choice</option>
+            <option class="w3-option" value="boolean">True / False</option>
+          </select>
+        </div>
+
+        <div class="w3-container w3-center w3-blue w3-round w3-margin-bottom" id="start">
+          <h3>START</h3>
+        </div>
+      </form>
+    </div>
+
+    <!-- Trivia Section -->
+    <div class="w3-container w3-center w3-round-large w3-blue w3-margin" id="questdiv" style="display: none">
+      <h4 id="question"></h4>
+    </div>
+    <!-- answers section -->
+    <!-- Multiply -->
+    <div class="w3-section w3-margin" id="ansdiv" style="background-color: #D1EDF2">
+
+        <form action="" id="form1" class="w3-form w3-padding" style="display: none">
+          <div class="w3-section w3-round w3-margin w3-padding ans1div">
+            <input type="radio" id="r1" class="w3-radio" name="multi" checked>
+            <label class="multi" for="r1" id="ans1">dato</label>
+          </div>
+          <div class="w3-section w3-margin w3-round w3-padding ans1div">  
+            <input type="radio" id="r2" class="w3-radio"  name="multi">
+            <label class="multi" for="r2" id="ans2"></label>
+          </div>  
+          <div class="w3-section w3-margin  w3-round w3-padding ans1div">  
+            <input type="radio" id="r3" class="w3-radio" name="multi">
+            <label class="multi" for="r3" id="ans3"></label>
+          </div>
+          <div class="w3-section w3-margin w3-round w3-padding ans1div">  
+            <input type="radio" id="r4" class="w3-radio" name="multi">
+            <label class="multi" for="r4" id="ans4"></label>
+          </div>  
+        </form>
+        <!-- true or false -->
+        <form action="" id="form2" class="w3-form w3-padding w3-round" style="display: none">
+          <div class="w3-container w3-margin w3-round w3-padding ans2div">
+            <input type="radio" id="r5" class="w3-radio" name="truefalse" checked>
+            <label class="truefalse" for="r5" id="ans5"></label>
+          </div>
+          <div class="w3-container w3-margin w3-round w3-padding ans2div">  
+            <input type="radio" id="r6" class="w3-radio"  name="truefalse">
+            <label class="truefalse" for="r6" id="ans6"></label>
+          </div>  
+        </form>
+    </div>  
+    <!-- buttons section -->
+    <div class="w3-section w3-blue w3-center w3-round w3-margin" id="submit" style="display: none">
+      <h2>Submit</h2>
+    </div>
+ 
+    <div class="w3-section w3-blue w3-center w3-round w3-margin" id="next" style="display: none">
+      <h2>Next</h2>
+    </div>
+    <!-- count section -->
+    <div class="w3-row-padding w3-margin-top" id="countsection" style="display: none">
+      <div class="w3-half">
+        <div class="w3-card-4 w3-light-grey w3-round">
+          <div class="w3-container w3-center">
+            <h4>Count</h4>
+          </div>
+          <p class="w3-jumbo w3-center" id="count">0</p>
+        </div>
+      </div>
+      <div class="w3-half">
+        <div class="w3-card-4  w3-light-grey w3-round" >
+          <div class="w3-container w3-center">
+            <h4>Best Score</h4>
+          </div>
+          <p class='w3-jumbo w3-center' id="bestscore">0</p>
+        </div>
+      </div>
+    </div>
+    <!-- reset button -->
+    <div class="w3-container w3-blue w3-center w3-margin w3-round-large" id="reset" onclick="reset()" style="display: none">
+      <h3>Reset</h3>
+    </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
